@@ -57,6 +57,14 @@ describe StringCalculator do
       it 'accepts any length of delimeter' do
         expect(described_class.new('//[***]\n1***2***3').add).to eq(6)
       end
+
+      it 'accepts multiple delimeter' do
+        expect(described_class.new('//[*][%]\n1*2%3').add).to eq(6)
+      end
+
+      it 'accepts multiple delimeter of any length' do
+        expect(described_class.new('//[*][%%]\n1*2%%3').add).to eq(6)
+      end
     end
 
     context 'negative numbers' do

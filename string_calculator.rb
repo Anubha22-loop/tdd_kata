@@ -20,12 +20,16 @@ class StringCalculator
   end
 
   def number_arr
-    @numbers.gsub('\n', delimiter).split(delimiter).map {|n| n.to_i}
+    delimeter_arr = get_delimiters
+    numbers_str = @numbers.gsub('\n', DEFAULT_DELIMITER)
+    delimeter_arr.each do |delimeter|
+      numbers_str = numbers_str.gsub(delimeter, DEFAULT_DELIMITER)
+    end
+    numbers_str.split(DEFAULT_DELIMITER).map {|n| n.to_i}
   end
 
-  def delimiter
-    return DEFAULT_DELIMITER unless @numbers.start_with?('//')
-
-    @numbers[2] == '[' ? @numbers.match(/\/\/\[(.*?)\]/)[1] : @numbers[2]
+  def get_delimiters
+    return [DEFAULT_DELIMITER] unless @numbers.start_with?('//')
+    @numbers[2] == '[' ? @numbers.scan(/\[(.*?)\]/).flatten : [@numbers[2]]
   end
 end
