@@ -10,6 +10,14 @@ class StringCalculator
   end
 
   def number_arr
-    @numbers.gsub('\n', ',').split(',').map {|n| n.to_i}
+    @numbers.gsub('\n', delimiter).split(delimiter).map {|n| n.to_i}
+  end
+
+  def delimiter
+    delimiter = ','
+    if @numbers[0,2] == '//'
+      delimiter = @numbers[2,1]
+    end
+    delimiter
   end
 end

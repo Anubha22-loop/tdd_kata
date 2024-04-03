@@ -49,6 +49,10 @@ describe StringCalculator do
       it 'supports new line and command as delimiter in single input' do
         expect(described_class.new('1\n5,8').add).to eq(14)
       end
+
+      it 'supports different delimiter' do
+        expect(described_class.new('//;\n1;2').add).to eq(3)
+      end
     end
   end
 end
