@@ -24,5 +24,11 @@ describe StringCalculator do
         expect(str_calculator.add('20,10')).to eq(30)
       end
     end
+
+    context '3 numbers' do
+      it 'should return 6 for 1,2,3' do
+        expect(str_calculator.add('1,2,3')).to eq(6)
+      end
+    end
   end
 end
