@@ -21,9 +21,9 @@ class StringCalculator
 
   def number_arr
     delimeter_arr = get_delimiters
-    numbers_str = @numbers.gsub('\n', DEFAULT_DELIMITER)
+    numbers_str = replace_new_line_with_default_delimiter
     delimeter_arr.each do |delimeter|
-      numbers_str = numbers_str.gsub(delimeter, DEFAULT_DELIMITER)
+      numbers_str.gsub!(delimeter, DEFAULT_DELIMITER)
     end
     numbers_str.split(DEFAULT_DELIMITER).map {|n| n.to_i}
   end
@@ -31,5 +31,9 @@ class StringCalculator
   def get_delimiters
     return [DEFAULT_DELIMITER] unless @numbers.start_with?('//')
     @numbers[2] == '[' ? @numbers.scan(/\[(.*?)\]/).flatten : [@numbers[2]]
+  end
+
+  def replace_new_line_with_default_delimiter
+    @numbers.gsub('\n', DEFAULT_DELIMITER)
   end
 end
