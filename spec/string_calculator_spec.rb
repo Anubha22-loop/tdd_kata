@@ -64,5 +64,17 @@ describe StringCalculator do
         expect{ described_class.new('-1,-3,8').add }.to raise_error(StandardError, 'Negative numbers not allowed: -1, -3')
       end
     end
+
+    context 'number greater than 1000' do
+      it 'skips number greater than 1000' do
+        str_calculator = described_class.new('50,1025,25')
+        expect(str_calculator.add).to eq(75)
+      end
+
+      it 'include number equal to 1000' do
+        str_calculator = described_class.new('50,1000,25')
+        expect(str_calculator.add).to eq(1075)
+      end
+    end
   end
 end
