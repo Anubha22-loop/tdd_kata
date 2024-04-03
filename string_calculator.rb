@@ -9,11 +9,7 @@ class StringCalculator
   def add
     return 0 if @numbers.empty?
     raise_error_negative_present
-    n_sum = 0
-    number_arr.each do |n|
-      n_sum += n unless n > 1000
-    end
-    n_sum
+    number_arr.reject { |n| n > 1000 }.sum
   end
 
   private
