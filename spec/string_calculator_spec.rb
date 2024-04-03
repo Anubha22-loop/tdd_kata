@@ -54,5 +54,15 @@ describe StringCalculator do
         expect(described_class.new('//;\n1;2').add).to eq(3)
       end
     end
+
+    context 'negative numbers' do
+      it 'raises an exception if negative number exist in the nummbers string' do
+        expect{ described_class.new('-1').add }.to raise_error(StandardError)
+      end
+
+      it 'raises an exception with message if negative number exist in the nummbers string' do
+        expect{ described_class.new('-1,-3,8').add }.to raise_error(StandardError, 'Negative numbers not allowed: -1, -3')
+      end
+    end
   end
 end
