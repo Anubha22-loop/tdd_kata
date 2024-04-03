@@ -40,5 +40,15 @@ describe StringCalculator do
         expect(str_calculator.add).to eq(100)
       end
     end
+
+    context 'delimiters' do
+      it 'supports new line as delimiter' do
+        expect(described_class.new('1\n5').add).to eq(6)
+      end
+
+      it 'supports new line and command as delimiter in single input' do
+        expect(described_class.new('1\n5,8').add).to eq(14)
+      end
+    end
   end
 end

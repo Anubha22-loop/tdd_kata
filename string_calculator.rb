@@ -10,6 +10,6 @@ class StringCalculator
   end
 
   def number_arr
-    @numbers.split(',').map {|n| n.to_i}
+    @numbers.gsub('\n', ',').split(',').map {|n| n.to_i}
   end
 end
