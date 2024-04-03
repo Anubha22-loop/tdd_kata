@@ -53,6 +53,10 @@ describe StringCalculator do
       it 'supports different delimiter' do
         expect(described_class.new('//;\n1;2').add).to eq(3)
       end
+
+      it 'accepts any length of delimeter' do
+        expect(described_class.new('//[***]\n1***2***3').add).to eq(6)
+      end
     end
 
     context 'negative numbers' do

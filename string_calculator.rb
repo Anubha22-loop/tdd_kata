@@ -24,6 +24,13 @@ class StringCalculator
   end
 
   def delimiter
-    @numbers[0,2] == '//' ? @numbers[2,1] : DEFAULT_DELIMITER
+    if @numbers.start_with?('//')
+      if @numbers[2,1] == '['
+        return @numbers.match(/\/\/\[(.*?)\]/)[1]
+      else
+        return @numbers[2,1]
+      end
+    end
+    DEFAULT_DELIMITER
   end
 end
