@@ -1,5 +1,7 @@
 class StringCalculator
 
+  DEFAULT_DELIMITER = ','
+
   def initialize(numbers = '')
     @numbers = numbers
   end
@@ -14,10 +16,6 @@ class StringCalculator
   end
 
   def delimiter
-    delimiter = ','
-    if @numbers[0,2] == '//'
-      delimiter = @numbers[2,1]
-    end
-    delimiter
+    @numbers[0,2] == '//' ? @numbers[2,1] : DEFAULT_DELIMITER
   end
 end
